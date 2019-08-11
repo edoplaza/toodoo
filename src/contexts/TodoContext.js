@@ -40,12 +40,17 @@ const TodoContextProvider = props => {
   }
 
   const sortTodos = (todos, oldIndex, newIndex) => {
-    setSorted( arrayMove(todos, oldIndex, newIndex) );
+    setTodos( arrayMove(todos, oldIndex, newIndex) );
   }
 
   const updateSorted = () => {
-    setTodos(sorted);
-    sorted.forEach((todo, index) => {
+    // setTodos(sorted);
+    // sorted.forEach((todo, index) => {
+    //   const ref = db.collection('todos').doc(todo.id);
+    //   return ref.update({ index: index + 1 })
+    // })
+
+    todos.forEach((todo, index) => {
       const ref = db.collection('todos').doc(todo.id);
       return ref.update({ index: index + 1 })
     })
@@ -78,7 +83,6 @@ const TodoContextProvider = props => {
           .catch(function(error) {
             console.error("Error updating document: ", error);
           });
-
           return todo
         }
         return todo
