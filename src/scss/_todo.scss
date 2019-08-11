@@ -1,0 +1,98 @@
+.todo {
+  padding: 0;
+  margin: 0 0 1rem 0;
+  width: 100%;
+  display: flex;
+  &.editable {
+    .todo__name {
+      border-bottom: 1px solid gray;
+    }
+  }
+  &__handle {
+    padding: 1rem 0;
+    font-size: 1.8rem;
+    margin: 0 1rem 0 0;
+    width: 20px;
+    cursor: pointer;
+  }
+  &__name {
+    font-size: 1.8rem;
+    flex-grow: 1;
+    height: 40px;
+
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    padding: 1rem 0.5rem;
+    &.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    &[contenteditable="true"] {
+      height: 40px;
+    }
+  }
+  &__delete {
+    font-size: 1.8rem;
+    color: red;
+    cursor: pointer;
+    display: none;
+    padding: 1rem 0;
+    &.visible {
+      display: block;
+    }
+  }
+  &__edit {
+    display: block;
+    font-size: 1.6rem;
+    color: black;
+    opacity: 0.4;
+    padding: 1rem 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    &:hover {
+      opacity: 1;
+       transition: opacity 0.2s ease;
+    }
+    &.hidden {
+      display: none
+    }
+  }
+
+}
+
+
+//Select on sort
+
+::-moz-selection {
+  background: #b4e5fe;
+}
+::selection {
+  background: #b4e5fe;
+}
+
+.todo__handle::-moz-selection {
+  background: transparent;
+}
+.todo__handle::selection {
+  background: transparent;
+}
+
+.todo__name::-moz-selection {
+  background: transparent;
+}
+
+.todo__name::-selection {
+  background: transparent
+}
+
+.todo__name {
+  &[contenteditable="true"]::-moz-selection {
+    background: #b4e5fe;
+  }
+}
+
+.todo__name {
+  &[contenteditable="true"]::-selection {
+    background:  #b4e5fe;
+  }
+}
