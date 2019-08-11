@@ -1,8 +1,12 @@
 .todo {
-  padding: 0;
+  padding: 0 1rem;
   margin: 0 0 1rem 0;
   width: 100%;
   display: flex;
+  border: 2px solid transparent;
+  &.selected {
+    border: 2px dashed gray;
+  }
   &.editable {
     .todo__name {
       border-bottom: 1px solid gray;

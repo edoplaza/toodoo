@@ -42,10 +42,12 @@ const TodoContextProvider = props => {
   const sortTodos = (todos, oldIndex, newIndex) => {
     setTodos( arrayMove(todos, oldIndex, newIndex) );
 
+
     const newTodos = document.querySelectorAll('.todo');
     const newIDS = [];
 
     newTodos.forEach(todo => {
+      todo.classList.remove('.selected');
       newIDS.push(todo.getAttribute('data-id'));
     });
 

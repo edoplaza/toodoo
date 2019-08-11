@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { SortableElement,  sortableHandle } from 'react-sortable-hoc';
 import { TodoContext } from '../contexts/TodoContext';
 
-const DragHandle = sortableHandle(() => <span className="todo__handle">: :</span>);
+//const DragHandle = sortableHandle(() => <span className="todo__handle">: :</span>);
 const Todo = SortableElement(( {todo} ) => {
 
   const { deleteTodo, completeTodo, editTodo} = useContext(TodoContext);
@@ -28,9 +28,10 @@ const Todo = SortableElement(( {todo} ) => {
     if ( !li.classList.contains('.completed')){
       li.classList.add('editable');
       text.contentEditable = true;
-      //text.textContent = '';
       text.focus();
+
     }
+
   }
 
   const handleCommit = (e, id, name) => {
@@ -73,7 +74,7 @@ const Todo = SortableElement(( {todo} ) => {
 
   return(
     <li className="todo" data-id={todo.id}>
-      <DragHandle />
+
       <span
         className={todo.completed ? 'todo__name completed' : 'todo__name'}
         onClick={e => handleComplete(e, todo.id)}
