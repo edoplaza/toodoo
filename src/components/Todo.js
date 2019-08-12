@@ -78,13 +78,13 @@ const Todo = SortableElement(( {todo} ) => {
   }
 
   window.tapTime = (new Date).getTime()
-  $('body').on('touchstart click', '.selector', function(e){
+  document.body.addEventListener('touchstart click', function(e) {
     var delta = ((new Date).getTime() - window.tapTime)
-      if( delta < 200 ){
-          alert('Double Tap Detected')
-      }
-    window.tapTime = (new Date).getTime()
+    if( delta < 200 ){
+      alert('Double Tap Detected')
+    }
   })
+
 
   return(
     <li className="todo" data-id={todo.id}>
