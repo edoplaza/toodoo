@@ -11,13 +11,16 @@ const AddTodo = () => {
       addTodo(name);
       setName('');
     }
+  }
 
+  const handleChange = e => {
+    if (name.length < 50) setName(e.target.value)
   }
 
   return (
     <div className="add">
      <form onSubmit={handleSubmit}>
-      <input onChange={ e => setName(e.target.value) } name="name" type="text" placeholder="What do you need to do?" value={name} />
+      <input onChange={ e => handleChange(e) } name="name" type="text" placeholder="What do you need to do?" value={name} />
       <button>Add Todo</button>
      </form>
     </div>

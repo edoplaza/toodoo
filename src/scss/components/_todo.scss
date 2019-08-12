@@ -4,6 +4,8 @@
   width: 100%;
   display: flex;
   border: 2px solid transparent;
+  background: $gray-light;
+
   &.selected {
     border: 2px dashed gray;
   }
@@ -22,17 +24,20 @@
   &__name {
     font-size: 1.8rem;
     flex-grow: 1;
-    height: 40px;
+    overflow-x: hidden;
+    margin: 0 2rem 0 0;
+    //height: 40px;
 
     cursor: pointer;
     border-bottom: 1px solid transparent;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
     &.completed {
       text-decoration: line-through;
       color: gray;
     }
     &[contenteditable="true"] {
-      height: 40px;
+
+      //height: 40px;
     }
   }
   &__delete {

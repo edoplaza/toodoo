@@ -1,0 +1,16 @@
+.todos {
+  width: 90vw;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 0 4rem 0;
+  height: 100%;
+
+}
+
+@include tablet {
+  // .todos {
+  //   height: calc( 100vh - 200px );
+  //   overflow-y: scroll;
+  // }
+
+}

@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap');
-@import-normalize;
-@import 'scss/main';
-@import 'scss/todos';
-@import 'scss/header';
-@import 'scss/list';
-@import 'scss/todo';
-@import 'scss/add';
+//@import-normalize;
+
+@import 'scss/helpers/variables';
+@import 'scss/helpers/mixins';
+
+@import 'scss/components/main';
+@import 'scss/components/todos';
+@import 'scss/components/header';
+@import 'scss/components/list';
+@import 'scss/components/todo';
+@import 'scss/components/add';
+

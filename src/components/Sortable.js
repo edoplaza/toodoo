@@ -22,6 +22,8 @@ class Sortable extends Component {
         //useDragHandle
         pressDelay={200}
         updateBeforeSortStart={this.onSortStart}
+        lockAxis = 'y'
+
       />
     )
   }
