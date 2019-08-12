@@ -28,7 +28,6 @@ const Todo = SortableElement(( {todo} ) => {
       text.contentEditable = true;
       text.focus();
       text.addEventListener('keydown', function(event) {
-        console.log(li.textContent.length);
         if (li.textContent.length > 50 && event.keyCode != 8) {
           event.preventDefault();
         }
@@ -40,6 +39,7 @@ const Todo = SortableElement(( {todo} ) => {
   const handleCommit = (e, id, name) => {
 
     const text = e.target;
+
     const li = e.target.parentNode;
     const edit = li.querySelector('.todo__edit');
 
@@ -53,6 +53,8 @@ const Todo = SortableElement(( {todo} ) => {
 
     if (text.innerHTML ==='') text.innerHTML = name;
     let final = text.innerHTML;
+    final = final.replace(/&nbsp;/g, '');
+
     editTodo(id, final);
 
   }
@@ -66,6 +68,7 @@ const Todo = SortableElement(( {todo} ) => {
   }
 
   const handleBlur = (e, id, name) => {
+
     handleCommit(e, id, name);
   }
 
