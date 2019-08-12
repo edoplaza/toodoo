@@ -77,15 +77,6 @@ const Todo = SortableElement(( {todo} ) => {
     if ( !li.classList.contains('editable') ) completeTodo(id)
   }
 
-  window.tapTime = (new Date).getTime()
-  document.body.addEventListener('touchstart click', function(e) {
-    var delta = ((new Date).getTime() - window.tapTime)
-    if( delta < 200 ){
-      alert('Double Tap Detected')
-    }
-  })
-
-
   return(
     <li className="todo" data-id={todo.id}>
 

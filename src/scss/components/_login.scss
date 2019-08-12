@@ -1,0 +1,38 @@
+.login {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 2rem 0;
+    input {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.8rem;
+      margin: 0 0 2rem;
+    }
+    button {
+      padding: 1rem;
+      background: black;
+      color: white;
+      font-size: 1.8rem;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  &__account {
+    font-size: 1.8rem;
+  }
+  &__register {
+    font-size: 1.6rem;
+    color: red;
+  }
+
+}
