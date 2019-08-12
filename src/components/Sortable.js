@@ -20,7 +20,7 @@ class Sortable extends Component {
       <Todos
         onSortEnd={this.onSortEnd}
         //useDragHandle
-        pressDelay={200}
+        //pressDelay={200}
         updateBeforeSortStart={this.onSortStart}
         lockAxis = 'y'
 
