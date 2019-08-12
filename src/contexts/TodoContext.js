@@ -7,9 +7,6 @@ export const TodoContext = createContext();
 
 app.initializeApp(firebaseConfig);
 const db = app.firestore();
-const initial = [
-  {name: 'hola', completed: false}
-]
 const TodoContextProvider = props => {
   const[todos, setTodos] = useState([]);
   useEffect(() => {
@@ -41,10 +38,8 @@ const TodoContextProvider = props => {
 
   const sortTodos = (todos, oldIndex, newIndex) => {
     setTodos( arrayMove(todos, oldIndex, newIndex) );
-
     const newTodos = document.querySelectorAll('.todo');
     const newIDS = [];
-
     newTodos.forEach( (todo, index) => {
       todo.classList.remove('.selected');
       newIDS.push(todo.getAttribute('data-id'));
@@ -56,8 +51,6 @@ const TodoContextProvider = props => {
     })
 
   }
-
-
 
   const completeTodo = (id) => {
     setTodos(
