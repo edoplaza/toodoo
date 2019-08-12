@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="header">
       <h1 className="header__title">Too - Doo</h1>
-      <a onClick={handleLogout} href="">Logout</a>
+      <a className="header__out" onClick={handleLogout}>Logout</a>
     </div>
   )
 }

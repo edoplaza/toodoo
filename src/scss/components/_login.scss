@@ -6,7 +6,7 @@
   flex-direction: column;
 
   form {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,6 +16,8 @@
       padding: 1rem;
       font-size: 1.8rem;
       margin: 0 0 2rem;
+      -webkit-appearance: none;
+      border: 1px solid #b3b3b3;
     }
     button {
       padding: 1rem;
@@ -32,7 +34,7 @@
   }
   &__register {
     font-size: 1.6rem;
-    color: red;
+    color: #333333;
   }
 
 }

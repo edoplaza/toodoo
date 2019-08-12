@@ -1,16 +1,17 @@
 .header {
   text-align: center;
-  //padding: 0 0 1rem 0;
+  position: relative;
   &__title {
     font-size: 3rem;
     color: black;
     margin: 0;
   }
-  &__tag {
+  &__out {
     font-size: 1.6rem;
-    color: gray;
-    span {
-      color: black;
-    }
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
+
 }

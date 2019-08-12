@@ -15,9 +15,9 @@ const TodoContextProvider = props => {
   const[todos, setTodos] = useState([]);
   const[currentUser, setCurrentUser] = useState(null);
   const[authID, setAuthID] = useState(null);
+  const[nombre, setNombre] = useState('');
 
   useEffect(() => {
-    console.log('firs', authID)
     authUser(props);
     createCollection(authID);
     if(authID !== null) {
@@ -26,11 +26,11 @@ const TodoContextProvider = props => {
   }, [authID])
 
   const register = (name, email, password) => {
-    auth.createUserWithEmailAndPassword(
-      email,
-      password
-    ).then( () => {
-      console.log('new user registered');
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(userData => {
+      userData.user.updateProfile({
+        displayName: name
+      })
     })
   }
 
@@ -56,7 +56,8 @@ const TodoContextProvider = props => {
       if(user) {
         setCurrentUser(user);
         setAuthID(user.uid);
-        props.history.push('/')
+        props.history.push('/');
+        setNombre(user.displayName);
       } else {
         setCurrentUser(null);
         setAuthID(null);
@@ -159,7 +160,7 @@ const TodoContextProvider = props => {
   }
 
   return (
-    <TodoContext.Provider value={{ register, login, logout, todos, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
+    <TodoContext.Provider value={{ register, login, logout, todos, currentUser, nombre, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
       { props.children }
     </TodoContext.Provider>
   )
