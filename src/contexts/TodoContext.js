@@ -18,7 +18,7 @@ const TodoContextProvider = props => {
 
   useEffect(() => {
     authUser(props);
-    createCollection(authID);
+    //createCollection(authID);
     if(authID !== null) {
       getTodos();
     }
@@ -66,18 +66,18 @@ const TodoContextProvider = props => {
 
   }
 
-  const createCollection = () => {
-    const initialTodo = {
-      id: 1,
-      name: 'welcome',
-      completed: false
-    }
-    if(authID != null) {
-      db.collection(authID).add(initialTodo).then(() => {
-        console.log('collection created');
-      })
-    }
-  }
+  // const createCollection = () => {
+  //   const initialTodo = {
+  //     id: 1,
+  //     name: 'welcome',
+  //     completed: false
+  //   }
+  //   if(authID != null) {
+  //     db.collection(authID).add(initialTodo).then(() => {
+  //       console.log('collection created');
+  //     })
+  //   }
+  // }
 
   const getTodos = () => {
     db.collection(authID).orderBy('index').get()
