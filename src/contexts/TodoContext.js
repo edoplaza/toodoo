@@ -15,7 +15,6 @@ const TodoContextProvider = props => {
   const[todos, setTodos] = useState([]);
   const[currentUser, setCurrentUser] = useState(null);
   const[authID, setAuthID] = useState(null);
-  const[nombre, setNombre] = useState('');
 
   useEffect(() => {
     authUser(props);
@@ -57,7 +56,6 @@ const TodoContextProvider = props => {
         setCurrentUser(user);
         setAuthID(user.uid);
         props.history.push('/');
-        setNombre(user.displayName);
       } else {
         setCurrentUser(null);
         setAuthID(null);
@@ -160,7 +158,7 @@ const TodoContextProvider = props => {
   }
 
   return (
-    <TodoContext.Provider value={{ register, login, logout, todos, currentUser, nombre, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
+    <TodoContext.Provider value={{ register, login, logout, todos, currentUser, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
       { props.children }
     </TodoContext.Provider>
   )

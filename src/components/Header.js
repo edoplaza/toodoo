@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="header">
       <h1 className="header__title">Too - Doo</h1>
-      <a className="header__out" onClick={handleLogout}>Logout</a>
+      <button className="header__out" onClick={handleLogout}>Logout</button>
     </div>
   )
 }

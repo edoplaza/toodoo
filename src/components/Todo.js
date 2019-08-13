@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { SortableElement,  sortableHandle } from 'react-sortable-hoc';
 import { TodoContext } from '../contexts/TodoContext';
 
-//const DragHandle = sortableHandle(() => <span className="todo__handle">: :</span>);
+const DragHandle = sortableHandle(() => <span className="todo__handle">: :</span>);
 const Todo = SortableElement(( {todo} ) => {
 
   const { deleteTodo, completeTodo, editTodo} = useContext(TodoContext);
@@ -28,7 +28,7 @@ const Todo = SortableElement(( {todo} ) => {
       text.contentEditable = true;
       text.focus();
       text.addEventListener('keydown', function(event) {
-        if (li.textContent.length > 50 && event.keyCode != 8) {
+        if (li.textContent.length > 50 && event.keyCode !== 8) {
           event.preventDefault();
         }
       })
@@ -79,10 +79,10 @@ const Todo = SortableElement(( {todo} ) => {
 
   return(
     <li className="todo" data-id={todo.id}>
-
+      <DragHandle/>
       <span
         className={todo.completed ? 'todo__name completed' : 'todo__name'}
-        onDoubleClick={e => handleComplete(e, todo.id)}
+        onClick={e => handleComplete(e, todo.id)}
         onBlur={e => handleBlur(e, todo.id, todo.name)}
         onKeyPress={e => handleKey(e, todo.id, todo.name)}
       >

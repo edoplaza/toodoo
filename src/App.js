@@ -1,7 +1,6 @@
 import React from 'react';
 import TodoContextProvider from './contexts/TodoContext';
-import {BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Auth from './components/Auth';
 import Register from './components/Register';
@@ -18,7 +17,6 @@ const App = () => (
       </div>
     </TodoContextProvider>
   </BrowserRouter>
-
 )
 
 export default App;

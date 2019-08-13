@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 import {Link } from 'react-router-dom';
-import Header from './Header';
 
 const Register = () => {
   const { register } = useContext(TodoContext);
