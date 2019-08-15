@@ -1,0 +1,42 @@
+.form {
+  margin: 0 0 2rem 0;
+  width: 100%;
+  &__field {
+    position: relative;
+    margin: 0 0 2rem 0;
+  }
+  &__input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.8rem;
+    -webkit-appearance: none;
+    border: 1px solid #b3b3b3;
+    border-radius: 0;
+    position: relative;
+    &--error {
+      border: 1px solid red;
+    }
+  }
+  &__inline {
+    position: absolute;
+    bottom: -1.4rem;
+    left: 0;
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1;
+    background: red;
+    padding: 0.5rem 1rem;
+    width: 100%;
+
+  }
+  &__submit {
+    padding: 1rem;
+    background: black;
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+  }
+
+}

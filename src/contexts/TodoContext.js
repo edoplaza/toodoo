@@ -12,34 +12,54 @@ const db = app.firestore();
 const auth = app.auth();
 
 const TodoContextProvider = props => {
-  const[todos, setTodos] = useState([]);
-  const[currentUser, setCurrentUser] = useState(null);
-  const[authID, setAuthID] = useState(null);
+  const [todos, setTodos] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authID, setAuthID] = useState(null);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     authUser(props);
-    //createCollection(authID);
     if(authID !== null) {
       getTodos();
     }
+
   }, [authID])
 
-  const register = (name, email, password) => {
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(userData => {
-      userData.user.updateProfile({
-        displayName: name
-      })
-    })
+  const register = (name, email, password, errors) => {
+    const noErrors = Object.keys(errors).length;
+
+    if (noErrors !== 0) {
+      setErrors(errors);
+    } else {
+      auth.createUserWithEmailAndPassword(email, password)
+      .then(userData => {
+        userData.user.updateProfile({
+          displayName: name
+        })
+      }).catch(err => {
+        setErrors({...errors, server: err.message});
+      });
+    }
   }
 
-  const login = (email, password) => {
-    auth.signInWithEmailAndPassword(
-      email,
-      password
-    ).then( () => {
-       console.log('new user Logged in');
-    })
+  const clearErrors = () => {
+    setErrors({})
+  }
+
+  const login = (email, password, errors) => {
+    const noErrors = Object.keys(errors).length;
+    if (noErrors !== 0) {
+      setErrors(errors);
+    } else {
+      auth.signInWithEmailAndPassword(
+        email,
+        password
+      ).then((data) => {
+        console.log(data);
+      }).catch(err => {
+        setErrors({...errors, server: err.message});
+      })
+    }
   }
 
   const logout = () => {
@@ -52,11 +72,12 @@ const TodoContextProvider = props => {
 
   const authUser = props => {
     auth.onAuthStateChanged(user => {
-      if(user) {
+     console.log(props);
+      if( user  ) {
         setCurrentUser(user);
         setAuthID(user.uid);
         props.history.push('/');
-      } else {
+      } else if ( props.history.location.pathname !== '/register') {
         setCurrentUser(null);
         setAuthID(null);
         props.history.push('/auth')
@@ -158,7 +179,7 @@ const TodoContextProvider = props => {
   }
 
   return (
-    <TodoContext.Provider value={{ register, login, logout, todos, currentUser, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
+    <TodoContext.Provider value={{ register, errors, login, clearErrors, logout, todos, currentUser, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
       { props.children }
     </TodoContext.Provider>
   )
