@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Auth from './components/Auth';
 import Register from './components/Register';
+import Forgot from './components/Forgot';
 
 const App = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const App = () => (
           <Route path='/' exact component={Home} />
           <Route path='/auth' component={Auth} />
           <Route path='/register' component={Register} />
+          <Route path='/forgot' component={Forgot} />
         </Switch>
       </div>
     </TodoContextProvider>

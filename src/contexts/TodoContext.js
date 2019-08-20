@@ -16,6 +16,7 @@ const TodoContextProvider = props => {
   const [currentUser, setCurrentUser] = useState(null);
   const [authID, setAuthID] = useState(null);
   const [errors, setErrors] = useState({});
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
 
   useEffect(() => {
     authUser(props);
@@ -62,17 +63,35 @@ const TodoContextProvider = props => {
     }
   }
 
+  const resetPassword = (email, errors) => {
+    const noErrors = Object.keys(errors).length;
+    if (noErrors !== 0) {
+      setErrors(errors);
+    } else {
+       auth.sendPasswordResetEmail(email)
+       .then(() => {
+        console.log('yeah');
+        setIsPasswordReset(true);
+      }).catch(err => {
+        setErrors({...errors, server: err.message});
+        console.log(err.message);
+      })
+    }
+  }
+
   const logout = () => {
     auth.signOut().then( () => {
       setAuthID(null);
       setTodos([])
-      console.log('user has Logged out');
+      //console.log('user has Logged out');
     })
   }
 
+
+
   const authUser = props => {
     auth.onAuthStateChanged(user => {
-     console.log(props);
+     //console.log(props);
       if( user  ) {
         setCurrentUser(user);
         setAuthID(user.uid);
@@ -161,7 +180,7 @@ const TodoContextProvider = props => {
           const ref = db.collection(authID).doc(id)
           ref.update({name: final})
           .then(function() {
-            console.log("Document successfully updated!");
+            //console.log("Document successfully updated!");
           })
           .catch(function(error) {
             console.error("Error updating document: ", error);
@@ -179,7 +198,7 @@ const TodoContextProvider = props => {
   }
 
   return (
-    <TodoContext.Provider value={{ register, errors, login, clearErrors, logout, todos, currentUser, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
+    <TodoContext.Provider value={{ register, errors, resetPassword, isPasswordReset, login, clearErrors, logout, todos, currentUser, sortTodos, addTodo, completeTodo, editTodo, deleteTodo}}>
       { props.children }
     </TodoContext.Provider>
   )

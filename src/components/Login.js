@@ -66,7 +66,8 @@ const Login = () => {
       </form>
       <p className="login__account">Don't have an account?</p>
       <Link className="login__register" to='/register'>Register</Link>
-      {errors.server &&   <div className="login__error">{errors.server}</div>}
+      <Link className="login__forgot" to='/forgot'>Forgot password?</Link>
+      {errors.server && <div className="login__error">{errors.server}</div>}
     </div>
   );
 }
