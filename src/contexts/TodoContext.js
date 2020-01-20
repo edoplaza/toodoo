@@ -23,7 +23,6 @@ const TodoContextProvider = props => {
     if(authID !== null) {
       getTodos();
     }
-
   }, [authID])
 
   const register = (name, email, password, errors) => {
@@ -70,7 +69,7 @@ const TodoContextProvider = props => {
     } else {
        auth.sendPasswordResetEmail(email)
        .then(() => {
-        console.log('yeah');
+        clearErrors();
         setIsPasswordReset(true);
       }).catch(err => {
         setErrors({...errors, server: err.message});
@@ -83,15 +82,11 @@ const TodoContextProvider = props => {
     auth.signOut().then( () => {
       setAuthID(null);
       setTodos([])
-      //console.log('user has Logged out');
     })
   }
 
-
-
   const authUser = props => {
     auth.onAuthStateChanged(user => {
-     //console.log(props);
       if( user  ) {
         setCurrentUser(user);
         setAuthID(user.uid);
@@ -102,22 +97,7 @@ const TodoContextProvider = props => {
         props.history.push('/auth')
       }
     })
-
-
   }
-
-  // const createCollection = () => {
-  //   const initialTodo = {
-  //     id: 1,
-  //     name: 'welcome',
-  //     completed: false
-  //   }
-  //   if(authID != null) {
-  //     db.collection(authID).add(initialTodo).then(() => {
-  //       console.log('collection created');
-  //     })
-  //   }
-  // }
 
   const getTodos = () => {
     db.collection(authID).orderBy('index').get()
@@ -158,7 +138,7 @@ const TodoContextProvider = props => {
 
   }
 
-  const completeTodo = (id) => {
+  const completeTodo = id => {
     setTodos(
       todos.map(todo => {
         if(todo.id === id) {
@@ -180,7 +160,6 @@ const TodoContextProvider = props => {
           const ref = db.collection(authID).doc(id)
           ref.update({name: final})
           .then(function() {
-            //console.log("Document successfully updated!");
           })
           .catch(function(error) {
             console.error("Error updating document: ", error);

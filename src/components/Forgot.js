@@ -19,9 +19,7 @@ const Forgot = () => {
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(resetPasswordEmail)) {
       errors.email = 'Invalid Email';
     }
-
     resetPassword(resetPasswordEmail, errors);
-
   }
 
   const handleReset = () => {
@@ -52,7 +50,6 @@ const Forgot = () => {
       { isPasswordReset ? <p>Please check your email</p> : <p>{errors.server}</p> }
     </div>
   );
-
 }
 
 export default Forgot;
